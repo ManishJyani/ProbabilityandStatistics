@@ -33,23 +33,24 @@
 
     You test positive — what’s the chance you actually have the disease?
 
-\[
-\begin{align*}
-P(Disease) &= 0.01 \\
-P(Positive|Disease) &= 0.99 \\
-P(Positive|No\,Disease) &= 0.01
-\end{align*}
-\]
+    $$\[
+    \begin{align*}
+    P(Disease) &= 0.01 \\
+    P(Positive|Disease) &= 0.99 \\
+    P(Positive|No\,Disease) &= 0.01
+    \end{align*}
+    \]
 
-\[
-P(Disease|Positive) = \frac{0.99 \times 0.01}{(0.99 \times 0.01) + (0.01 \times 0.99)} \approx 0.50
-\]
+    \[
+    P(Disease|Positive) = \frac{0.99 \times 0.01}{(0.99 \times 0.01) + (0.01 \times 0.99)} \approx 0.50
+    \]$$
 
     So even with a positive test, there’s only about a **50% chance** you actually have the disease — because the disease is rare.
 
     ---
 
     ### 💡 Key Idea
-    Bayes’ theorem helps you **update your belief** from a **prior** to a **posterior** when **new evidence** appears.
+    Bayes’ theorem helps you **update your belief** from a **prior** to a **posterior** when **new evidence** appears.  
+    These is used in classification in ML like if what is the probability of a mail to be spam if lottery is in it.
 
 
