@@ -49,8 +49,13 @@ So even with a positive test, there’s only about a **50% chance** you actually
 
     ---
 
- ### 💡 Key Idea
+## Key Idea
     Bayes’ theorem helps you **update your belief** from a **prior** to a **posterior** when **new evidence** appears.  
     These is used in classification in ML like if what is the probability of a mail to be spam if lottery is in it.
+# Naive Bays model
+-   When predicting a class (like “spam” or “not spam”), Naïve Bayes assumes that each feature (like the words in an email) contributes to the outcome **independently**, even though in reality, features often influence each other.  
+    $$\[
+    P(C \mid x_1, x_2, \ldots, x_n) = \frac{P(C) \prod_{i=1}^{n} P(x_i \mid C)}{P(x_1, x_2, \ldots, x_n)}
+    \]$$
 
 
