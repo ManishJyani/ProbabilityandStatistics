@@ -34,11 +34,11 @@
     You test positive — what’s the chance you actually have the disease?
 
     $$[\
-    \begin{align*}  
-    P(Disease) &= 0.01 \\  
-    P(Positive|Disease) &= 0.99 \\  
-    P(Positive|No\,Disease) &= 0.01  
-    \end{align*}  
+    \begin{align*}
+    P(Disease) &= 0.01 \\
+    P(Positive|Disease) &= 0.99 \\
+    P(Positive|No\,Disease) &= 0.01 
+    \end{align*}
     \]$$
 
     $$[\
