@@ -33,17 +33,17 @@
 
     You test positive — what’s the chance you actually have the disease?
 
-    $$\
+    $$[\
     \begin{align*}  
     P(Disease) &= 0.01 \\  
     P(Positive|Disease) &= 0.99 \\  
     P(Positive|No\,Disease) &= 0.01  
     \end{align*}  
-    \$$
+    \]$$
 
-    $$\
+    $$[\
     P(Disease|Positive) = \frac{0.99 \times 0.01}{(0.99 \times 0.01) + (0.01 \times 0.99)} \approx 0.50
-    \$$
+    \]$$
 
     So even with a positive test, there’s only about a **50% chance** you actually have the disease — because the disease is rare.
 
