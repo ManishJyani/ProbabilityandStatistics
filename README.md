@@ -41,15 +41,15 @@ $$[
     \end{align*}
 ]$$
 
-    $$[\
+$$[\
     P(Disease|Positive) = \frac{0.99 \times 0.01}{(0.99 \times 0.01) + (0.01 \times 0.99)} \approx 0.50
-    \]$$
+\]$$
 
-    So even with a positive test, there’s only about a **50% chance** you actually have the disease — because the disease is rare.
+So even with a positive test, there’s only about a **50% chance** you actually have the disease — because the disease is rare.
 
     ---
 
-    ### 💡 Key Idea
+ ### 💡 Key Idea
     Bayes’ theorem helps you **update your belief** from a **prior** to a **posterior** when **new evidence** appears.  
     These is used in classification in ML like if what is the probability of a mail to be spam if lottery is in it.
 
