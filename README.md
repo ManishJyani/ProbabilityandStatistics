@@ -15,9 +15,7 @@
     It connects what we already believe (the **prior**) with how likely the evidence is if our belief were true (the **likelihood**) to give us a new belief (the **posterior**).
 
     ### 🔢 Formula
-    \[
-    P(H|E) = \frac{P(E|H) \times P(H)}{P(E)}
-    \]
+        $$P(H | E) = \frac{P(E | H) \times P(H)}{P(E)}$$
 
     Where:
     - **P(H)** → Prior (initial belief about hypothesis H)  
