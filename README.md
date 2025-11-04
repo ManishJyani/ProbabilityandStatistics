@@ -57,5 +57,52 @@ So even with a positive test, there’s only about a **50% chance** you actually
     $$\[
     P(C \mid x_1, x_2, \ldots, x_n) = \frac{P(C) \prod_{i=1}^{n} P(x_i \mid C)}{P(x_1, x_2, \ldots, x_n)}
     \]$$
+# 📘 Lecture Summary: Mean & Expected Value
+
+## 1. Concept of the Mean
+- The **mean** represents the **center or balance point** of a distribution.  
+- It is the value where the data (or probabilities) would balance on a scale.  
+- Can be viewed as a **weighted average** of values.  
+
+---
+
+## 2. Sample Mean vs. Expected Value
+
+### 🧩 **Sample Mean** ($\bar{x}$)
+- Based on **observed data**.  
+- Formula:  
+  $$\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$$  
+- Example: Kids’ ages → $\bar{x} = 1.3$ years.  
+- Describes the **empirical** or **observed** average from data.
+
+### 🎯 **Expected Value** ($E[X]$)
+- Based on a **probability model** or theoretical distribution.  
+- Formula (discrete):  
+  $$E[X] = \sum_x x \, P(x)$$  
+- Formula (continuous):  
+  $$E[X] = \int_{-\infty}^{\infty} x \, f(x) \, dx$$  
+- Example: Fair coin game → $E[X] = 0.5(10) + 0.5(0) = 5$.  
+- Describes the **theoretical mean** or **long-run average**.
+
+**Link:** The *sample mean* is an **estimate** of the *expected value*.  
+They share the same formula structure, but:
+- $\bar{x}$ uses **observed frequencies**,  
+- $E[X]$ uses **true probabilities**.
+
+---
+
+## 3. Key Ideas
+- **Mean = balancing point = weighted average.**  
+- **Uniform distribution** $[a, b]$:  
+  $$E[X] = \frac{a + b}{2}$$  
+- **Mean ≠ Median:** the mean shifts toward the tail in skewed data.  
+- **Discrete →** summation form; **Continuous →** integral form.  
+
+---
+
+## 📝 Summary
+- **Sample Mean ($\bar{x}$):** empirical average from data.  
+- **Expected Value ($E[X]$):** theoretical average from probability.  
+- Both describe the **center of a distribution** — one from **data**, one from **theory**.
 
 
