@@ -105,4 +105,37 @@ They share the same formula structure, but:
 - **Expected Value ($E[X]$):** theoretical average from probability.  
 - Both describe the **center of a distribution** — one from **data**, one from **theory**.
 
+\section*{Measures of Central Tendency}
+
+\begin{itemize}
+  \item \textbf{Mean ($\mu$):} Arithmetic average. Sensitive to outliers.
+    \[
+      \mu = \frac{1}{n}\sum_{i=1}^{n} x_i
+    \]
+  \item \textbf{Median:} Middle value when data are ordered. Robust to outliers.
+  \item \textbf{Mode:} Most frequent value (highest probability density).
+\end{itemize}
+
+\subsection*{Skewness and Relationships}
+\[
+\begin{cases}
+\text{Symmetric: } \text{Mean} = \text{Median} = \text{Mode} \\
+\text{Right-skewed: } \text{Mean} > \text{Median} > \text{Mode} \\
+\text{Left-skewed: } \text{Mean} < \text{Median} < \text{Mode}
+\end{cases}
+\]
+
+\subsection*{Example (Binomial, $n=5, p=0.5$)}
+\[
+\text{Mean} = np = 2.5, \quad
+\text{Median} = 2.5, \quad
+\text{Mode} = 2,3
+\]
+
+\subsection*{Example (Normal Distribution)}
+\[
+\text{Mean} = \text{Median} = \text{Mode}
+\]
+
+
 
