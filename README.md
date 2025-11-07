@@ -105,37 +105,88 @@ They share the same formula structure, but:
 - **Expected Value ($E[X]$):** theoretical average from probability.  
 - Both describe the **center of a distribution** — one from **data**, one from **theory**.
 
-\section*{Measures of Central Tendency}
 
-\begin{itemize}
-  \item \textbf{Mean ($\mu$):} Arithmetic average. Sensitive to outliers.
-    \[
-      \mu = \frac{1}{n}\sum_{i=1}^{n} x_i
-    \]
-  \item \textbf{Median:} Middle value when data are ordered. Robust to outliers.
-  \item \textbf{Mode:} Most frequent value (highest probability density).
-\end{itemize}
+## 📊 Measures of Central Tendency
 
-\subsection*{Skewness and Relationships}
-\[
+- **Mean ($\mu$):** Arithmetic average. Sensitive to outliers.  
+  $$\mu = \frac{1}{n}\sum_{i=1}^{n} x_i$$
+
+- **Median:** Middle value when data are ordered. Robust to outliers.  
+
+- **Mode:** Most frequent value (highest probability density).  
+
+---
+
+### ⚖️ Skewness and Relationships
+
+$$
 \begin{cases}
 \text{Symmetric: } \text{Mean} = \text{Median} = \text{Mode} \\
 \text{Right-skewed: } \text{Mean} > \text{Median} > \text{Mode} \\
 \text{Left-skewed: } \text{Mean} < \text{Median} < \text{Mode}
 \end{cases}
-\]
+$$
 
-\subsection*{Example (Binomial, $n=5, p=0.5$)}
-\[
-\text{Mean} = np = 2.5, \quad
-\text{Median} = 2.5, \quad
-\text{Mode} = 2,3
-\]
+---
 
-\subsection*{Example (Normal Distribution)}
-\[
-\text{Mean} = \text{Median} = \text{Mode}
-\]
+### 🎯 Examples
+
+**Binomial Distribution ($n=5, p=0.5$):**  
+$$\text{Mean} = np = 2.5, \quad \text{Median} = 2.5, \quad \text{Mode} = 2,3$$  
+
+**Normal Distribution:**  
+$$\text{Mean} = \text{Median} = \text{Mode}$$
+
+
+## 🎲 Expected Value of a Function
+
+### 🔹 Definition
+For a discrete random variable $X$ with outcomes $x_i$ and probabilities $p(x_i)$:
+
+$$
+E[X] = \sum_i x_i \, p(x_i)
+$$
+
+For any function $g(X)$:
+
+$$
+E[g(X)] = \sum_i g(x_i) \, p(x_i)
+$$
+
+---
+
+### 🎯 Example: Dice Game
+- Roll a fair die with $p(x_i) = \frac{1}{6}$  
+- Payoff = square of the number rolled  
+
+$$
+E[X^2] = \sum_{i=1}^{6} i^2 \cdot \frac{1}{6} = \frac{91}{6}
+$$
+
+---
+
+### 💰 Linear Transformation of Expectation
+If $Y = aX + b$, then:
+
+$$
+E[Y] = aE[X] + b
+$$
+
+**Implications:**
+- $E[aX] = aE[X]$
+- $E[b] = b$
+- Expectation is a **linear operator**
+
+---
+
+### 🧠 Key Takeaway
+Expectation preserves linearity:
+
+$$
+E[aX + b] = aE[X] + b
+$$
+
+and extends naturally to functions $g(X)$ by replacing $X$ with $g(X)$ in the summation.
 
 
 
