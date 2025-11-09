@@ -1227,7 +1227,7 @@ A **square matrix** that organizes all variances and covariances between multipl
 ## 📐 Structure
 For variables X₁, X₂, ..., Xₙ:
 
-Covariance Matrix Σ =
+Covariance Matrix Σ =   
     [ Var(X₁) Cov(X₁,X₂) ... Cov(X₁,Xₙ) ]
     [ Cov(X₂,X₁) Var(X₂) ... Cov(X₂,Xₙ) ]
     [ ... ... ... ... ]
