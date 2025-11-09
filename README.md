@@ -1265,6 +1265,35 @@ Covariance Matrix Σ =
 
 > 💡 **Bottom Line:** Correlation coefficient gives a standardized measure of relationship strength that covariance alone cannot provide.
 
+# 📊 Multivariate Gaussian: The Multi-Dimensional Bell Curve
+
+## 🎯 Core Concept
+Extends the normal distribution to multiple variables, creating a "bell" in higher dimensions.
+
+## 📈 Key Features
+- **Center:** Mean vector μ (replaces single mean)
+- **Spread:** Covariance matrix Σ (replaces variance)
+  - **Diagonal:** Variances of individual variables
+  - **Off-diagonal:** Covariances between variables
+
+## 🔄 Visual Difference
+- **Independent variables:** Circular contours (like a symmetric hill)
+- **Dependent variables:** Elliptical contours (stretched along correlation direction)
+
+## 🧮 Formula Evolution  
+    Univariate: f(x) = (1/√(2πσ²)) × exp(-(x-μ)²/(2σ²))
+
+    Multivariate: f(x) = (1/√((2π)ⁿ|Σ|)) × exp(-½(x-μ)ᵀΣ⁻¹(x-μ))
+
+
+## 🚀 Why It Matters
+- Foundation for many machine learning algorithms
+- Naturally handles correlated variables
+- Extends intuitive bell curve to multiple dimensions
+
+> 💡 **One-liner:** A multivariate Gaussian is a bell curve that can be stretched and tilted based on how variables relate to each other.
+
+### Week 03
 
 
 
