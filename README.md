@@ -835,38 +835,38 @@ A **Quantile-Quantile Plot** compares the quantiles of your data against the qua
 
 ### Perfect Normal Data
 
-▲
-|       ••••••••••••••
-|     ••             ••
-|   ••                 ••
-| ••                     ••
-+-------------------------►
+    ▲
+    |       ••••••••••••••
+    |     ••             ••
+    |   ••                 ••
+    | ••                     ••
+    +-------------------------►
 All points lie close to the reference line  
 
 
 ### Skewed Data (Newspaper Budget Example)
-▲
-|       •••••••
-|     ••       •
-|   ••         •
-| ••           •
-|              ••••
-+-------------------------►
+    ▲
+    |       •••••••
+    |     ••       •
+    |   ••         •
+    | ••           •
+    |              ••••
+    +-------------------------►
 More points concentrated on one side
 Curve away from reference line  
 
 
 ### Heavy-Tailed Data
 
-▲
-|           •••••
-|         ••     ••
-|       ••         ••
-|     ••             ••
-|   ••                 ••
-| ••                     ••
-+-------------------------►
-Ends curve upward/downward from line  
+    ▲
+    |           •••••
+    |         ••     ••
+    |       ••         ••
+    |     ••             ••
+    |   ••                 ••
+    | ••                     ••
+    +-------------------------►
+    Ends curve upward/downward from line  
 
 
 ## 🛠️ Practical Examples from the Text
