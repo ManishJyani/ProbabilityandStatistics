@@ -1228,10 +1228,10 @@ A **square matrix** that organizes all variances and covariances between multipl
 For variables X₁, X₂, ..., Xₙ:
 
 Covariance Matrix Σ =   
-    [ Var(X₁) Cov(X₁,X₂) ... Cov(X₁,Xₙ) ]
-    [ Cov(X₂,X₁) Var(X₂) ... Cov(X₂,Xₙ) ]
-    [ ... ... ... ... ]
-    [ Cov(Xₙ,X₁) Cov(Xₙ,X₂) ... Var(Xₙ) ]
+    [ Var(X₁) Cov(X₁,X₂) ... Cov(X₁,Xₙ) ]  
+    [ Cov(X₂,X₁) Var(X₂) ... Cov(X₂,Xₙ) ]  
+    [ ... ... ... ... ]   
+    [ Cov(Xₙ,X₁) Cov(Xₙ,X₂) ... Var(Xₙ) ]  
 
 # 📈 Correlation Coefficient: Standardized Covariance
 
