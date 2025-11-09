@@ -1145,7 +1145,7 @@ Marginal (Row/Column Sums) Conditional (Slices)
 - Both lose $1 (probability 1/2)
 
 **Pattern:** Perfect positive correlation  
-Scatter Plot:
+Scatter Plot:  
     ▲ Y ($)
     | • (1,1)
     |
@@ -1159,7 +1159,7 @@ Scatter Plot:
 - X loses $1, Y wins $1 (probability 1/2)
 
 **Pattern:** Perfect negative correlation
-Scatter Plot:
+Scatter Plot:  
     ▲ Y ($)
     |• (-1,1)
     |
@@ -1171,7 +1171,7 @@ Scatter Plot:
 **Outcomes:** All four combinations equally likely (probability 1/4 each)
 - (1,1), (1,-1), (-1,1), (-1,-1)
 
-**Pattern:** No correlation
+**Pattern:** No correlation  
     ▲ Y ($)
     |• •
     |
