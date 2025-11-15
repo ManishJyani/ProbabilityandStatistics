@@ -1490,6 +1490,560 @@ If we knew the true mean μ, then with infinite data, every sample average would
 We use the shrinking variance σ²/n to quantify how close our sample averages are likely to be to the unknown true mean μ.  
 
 
+# Maximum Likelihood Estimation (MLE) Summary
+
+## Core Concept
+- **Goal**: Find the scenario or model that makes the observed evidence most probable
+- **Approach**: Compare conditional probabilities of evidence given different scenarios
+- **Selection**: Choose the scenario with the **highest probability** of producing the evidence
+
+## Simple Example: Popcorn on Floor
+**Evidence**: Popcorn on floor  
+**Possible Scenarios**:
+- `P(popcorn | movies)` → **High**
+- `P(popcorn | board games)` → **Medium**  
+- `P(popcorn | nap)` → **Low**
+
+**Conclusion**: Movies most likely caused the popcorn (highest conditional probability)
+
+## Connection to Machine Learning
+- **Data** = Evidence (like popcorn)
+- **Models** = Scenarios (like movies/board games/nap)
+- **Process**: Calculate `P(data | model)` for each model
+- **Result**: Select model with **highest** `P(data | model)`
+
+## Key Insight
+We pick the model that **most likely generated the observed data** by maximizing:  
+    P(evidence | scenario)
+
+## Linear Regression Context
+In regression, we choose the line that makes observed data points **most probable**, considering points are typically generated with some noise around the line.  
+
+# Maximum Likelihood Estimation: Coin Example
+
+## Problem Setup
+- **Scenario**: Coin tossed 10 times → 8 heads, 2 tails
+- **Candidate Coins**:
+  - Coin 1: P(heads) = 0.7
+  - Coin 2: P(heads) = 0.5 (fair)
+  - Coin 3: P(heads) = 0.3
+
+## Calculating Probabilities
+**Probability of 8 heads, 2 tails for each coin**:
+- **Coin 1**: `0.7⁸ × 0.3² = 0.0051`
+- **Coin 2**: `0.5¹⁰ = 0.0010` 
+- **Coin 3**: `0.3⁸ × 0.7² = 0.00003`
+
+**Conclusion**: Coin 1 most likely generated the data (highest probability)
+
+## Generalizing the Problem
+**For any coin with P(heads) = p**:
+- **Likelihood**: `L(p) = p⁸ × (1-p)²`
+- **Goal**: Find `p` that maximizes this likelihood
+
+## Mathematical Optimization
+**Log-Likelihood Trick**:
+- Convert product to sum: `log(L(p)) = 8·log(p) + 2·log(1-p)`
+- Take derivative and set to zero:  
+      d/dp [log(L(p))] = 8/p - 2/(1-p) = 0
+
+- **Optimal solution**: `p̂ = 8/10 = 0.8`
+
+## General Case Formula
+For `n` coin tosses with `k` heads:
+- **Optimal probability**: `p̂ = k/n` (sample mean)
+- **MLE selects the coin that matches the observed frequency**
+
+## Key Insight
+Maximum Likelihood Estimation finds the parameter value that makes the observed data **most probable**, which in this case is simply the empirical proportion of heads.  
+
+# Maximum Likelihood Estimation: Gaussian Distribution Example
+
+## Problem Setup
+- **Observations**: Numbers 1 and -1
+- **Goal**: Determine which distribution most likely generated these points
+
+## Comparing Different Means
+**Candidate Distributions** (all with σ = 1):
+- Normal(μ = -1, σ = 1)
+- Normal(μ = 0, σ = 1) 
+- Normal(μ = 1, σ = 1)
+
+**Likelihood Calculation**:
+- For μ = -1: L = 0.399 × 0.054 = 0.022
+- For μ = 0: L = 0.242 × 0.242 = 0.059 ✓
+- For μ = 1: L = 0.054 × 0.399 = 0.022
+
+**Result**: Normal(μ = 0, σ = 1) wins (highest likelihood)
+
+**Key Insight**: The optimal mean μ equals the sample mean (0)
+
+## Comparing Different Variances
+**Candidate Distributions** (all with μ = 0):
+- Normal(μ = 0, σ = 0.5)
+- Normal(μ = 0, σ = 1)
+- Normal(μ = 0, σ = 2)
+
+**Likelihood Calculation**:
+- For σ = 0.5: L = 0.044 × 0.044 = 0. , these are probablities of 1 and -1 in all three cases.  
+- For σ = 1: L = 0.242 × 0.242 = 0.059 ✓
+- For σ = 2: L = 0.176 × 0.176 = 0.031
+
+**Result**: Normal(μ = 0, σ = 1) wins again
+
+**Key Insight**: The optimal variance σ² equals the sample variance (1), and distribution mean is equal to sample mean which is 0.
+
+## General Pattern
+For Gaussian distributions, MLE gives:
+- **Optimal mean**: Sample mean
+- **Optimal variance**: Sample variance
+
+## Visual Interpretation
+- **Likelihood** = Height of probability density curve at observed points
+- **Total likelihood** = Product of individual likelihoods (for independent observations)
+- MLE selects the distribution that maximizes this product
+
+## Next Steps
+- Mathematical derivation of MLE formulas
+- Interactive tool to explore MLE with binomial and normal distributions
+- Applications of these concepts in practice   
+
+# Maximum Likelihood Estimation in Linear Regression
+
+## Core Concept
+- **Goal**: Find the model that most likely generated the observed data
+- **Process**: Calculate `P(data | model)` for each candidate model
+- **Selection**: Choose model with highest probability
+
+## Linear Regression Example
+**Scenario**: Fitting a line to data points
+**Candidate Models**: Three different lines (Model 1, 2, 3)
+
+## How Lines Generate Points
+- Each line represents a "road"
+- Points are "houses" built near the road
+- Points are sampled from Gaussian distributions centered on the line
+- For each x-value, a Gaussian is centered at the corresponding y-value on the line
+
+## Mathematical Formulation
+**For a line**: `y = mx + b`
+**At each point xᵢ**:
+- Gaussian centered at line's y-value
+- Generated point: sampled from this Gaussian
+- Distance from line: `dᵢ` (vertical distance)
+
+**Likelihood for one point**:  
+    Lᵢ = (1/√(2π)) × e^(-½dᵢ²)
+**Total likelihood** (for all points):
+    L = ∏ Lᵢ = constant × e^(-½∑dᵢ²)
+
+## Optimization
+**Log-likelihood**:  
+    log(L) = constant - ½∑dᵢ²
+
+
+**To maximize likelihood**:
+- Maximize `log(L)`
+- Equivalent to minimizing `∑dᵢ²` (sum of squared distances)
+
+## Key Insight
+**Maximum Likelihood Estimation for linear regression with Gaussian errors = Least Squares Regression**
+
+- Both methods minimize the sum of squared distances
+- The "best fit" line is the one that makes observed points most probable
+- MLE provides probabilistic interpretation for linear regression
+
+## Visual Confirmation
+Among candidate lines, the one with:
+- Highest likelihood product
+- Smallest sum of squared distances
+- Best visual fit to data points
+
+**wins the selection**  
+
+# Regularization in Machine Learning
+
+## The Overfitting Problem
+**Scenario**: Three models fitting the same dataset:
+- **Model 1**: Linear (degree 1)
+- **Model 2**: Quadratic (degree 2) 
+- **Model 3**: High-degree polynomial (degree 10)
+
+**Initial Loss (Squared Error)**:
+- Model 1: 10
+- Model 2: 2
+- Model 3: 0.1 ✓ (apparent winner)
+
+**Issue**: Model 3 fits training data perfectly but is "chaotic" and won't generalize well
+
+## Regularization Solution
+**Goal**: Penalize model complexity to prevent overfitting
+
+### L₂ Regularization (Ridge)
+**Penalty Calculation**:
+- **Model 1**: `y = 4x + 3` → Penalty = `4² = 16`
+- **Model 2**: `y = 2x² - 4x + 5` → Penalty = `2² + (-4)² = 20`
+- **Model 3**: Complex polynomial → Penalty = `262`
+
+**Regularized Loss** = Original Loss + Penalty:
+- Model 1: `10 + 16 = 26`
+- Model 2: `2 + 20 = 22` ✓ (new winner)
+- Model 3: `0.1 + 262 = 262.1`
+
+## General Formula
+**Regularized Error**:
+      Regularized Error = Log Loss + λ × L₂_regularization_error
+
+
+Where:
+- **λ** = regularization parameter (controls penalty strength)
+- **L₂ regularization error** = sum of squares of coefficients (excluding constant term)
+
+## Key Benefits
+- Prevents overfitting by penalizing complex models
+- Encourages simpler models that generalize better
+- Balances model fit with model complexity
+- The "simplest model that fits the data well" wins
+
+## Connection to Probability
+The text hints that regularization has a probabilistic interpretation related to maximum likelihood (to be explained next)  
+
+# Beyond Maximum Likelihood: Incorporating Prior Probabilities
+
+## The Popcorn Example Revisited
+**Evidence**: Popcorn on floor
+**New Candidate Scenarios**:
+- Watching movies → High probability of popcorn
+- Popcorn throwing contest → Very high probability of popcorn
+
+## The Problem with Pure MLE
+- **MLE approach**: Maximize `P(popcorn | scenario)`
+- **Result**: Contest wins (higher conditional probability)
+- **Intuition**: This feels wrong - movies should be more likely
+
+## The Missing Piece: Prior Probabilities
+**Key Insight**: We need to consider how likely each scenario is *independently*
+
+**Prior Probabilities**:
+- `P(movies)` = High (common activity)
+- `P(contest)` = Very low (rare event)
+
+## Bayesian Approach
+**Maximize Joint Probability**:  
+    P(popcorn AND scenario) = P(popcorn | scenario) × P(scenario)
+
+**Calculation**:
+- Movies: `P(popcorn|movies) × P(movies)` = High × High = High
+- Contest: `P(popcorn|contest) × P(contest)` = Very High × Very Low = Medium/Low
+
+**Result**: Movies now wins (higher joint probability)
+
+## Mathematical Foundation
+This is essentially **Bayes' Theorem**:  
+    P(scenario | popcorn) ∝ P(popcorn | scenario) × P(scenario)
+
+
+Where:
+- `P(scenario | popcorn)` = What we really want (posterior)
+- `P(popcorn | scenario)` = Likelihood (MLE term)
+- `P(scenario)` = Prior probability
+
+## Key Takeaway
+Pure Maximum Likelihood Estimation can be misleading when scenarios have different base rates. The Bayesian approach combines:
+- **Likelihood**: How well the scenario explains the evidence
+- **Prior**: How plausible the scenario is overall
+
+This prevents us from choosing implausible explanations that happen to fit the evidence well.  
+
+
+# Frequentist vs Bayesian Statistics
+
+## The Coin Toss Story
+**Scenario**: Coin tossed 10 times → 8 heads, 2 tails
+
+### Frequentist Approach
+- **Interpretation**: Probability = long-term frequency
+- **Conclusion**: `P(heads) = 8/10 = 0.8`
+- **Method**: Uses only observed data (no prior beliefs)
+
+### Bayesian Approach  
+- **Prior Belief**: Coins are usually fair → `P(heads) ≈ 0.5`
+- **Updated Belief**: Adjusts slightly based on evidence → `P(heads) ≈ 0.52`
+- **Method**: Combines prior belief with observed data
+
+## Core Philosophical Differences
+
+### Probability Interpretation
+| **Frequentist** | **Bayesian** |
+|-----------------|--------------|
+| Long-term frequency of events | Degree of belief/certainty |
+| Objective, data-driven | Subjective, incorporates prior knowledge |
+
+### Use of Priors
+| **Frequentist** | **Bayesian** |
+|-----------------|--------------|
+| No concept of priors | Explicitly uses prior beliefs |
+| Only uses observed evidence | Combines prior knowledge with new data |
+
+### Goal
+| **Frequentist** | **Bayesian** |
+|-----------------|--------------|
+| Find model with highest likelihood of generating data | Update prior beliefs based on new evidence |
+
+## Key Concepts
+
+### Frequentist Statistics
+- Maximum Likelihood Estimation (MLE)
+- Relies solely on observed data
+- Probability = limiting frequency over infinite trials
+
+### Bayesian Statistics  
+- **Prior**: Initial belief before seeing data
+- **Likelihood**: Probability of data given model
+- **Posterior**: Updated belief after seeing data
+- Uses Bayes' Theorem: `P(model|data) ∝ P(data|model) × P(model)`
+
+## Practical Implications
+- **Frequentist**: More objective, but ignores domain knowledge
+- **Bayesian**: Incorporates expert knowledge, but requires specifying priors
+- **MLE** (previously discussed) follows frequentist approach
+
+## Next Steps
+Exploring how priors affect predictions in Bayesian analysis  
+
+# Bayesian Priors and MAP Estimation
+
+## Three Bayesian Statisticians, One Coin
+
+### Different Prior Beliefs
+**Scenario**: Three Bayesians find a coin and want to estimate P(heads)
+
+| Statistician | Prior Type | Belief Strength | Prior Shape |
+|--------------|------------|-----------------|-------------|
+| **1. Conservative** | Strong prior | Very strong | Narrow curve centered at 0.5 |
+| **2. Moderate** | Mild prior | Moderate | Wider curve centered at 0.5 |
+| **3. Agnostic** | Non-informative | No assumptions | Flat curve (all values equally likely) |
+
+## Updating Beliefs with Evidence
+
+### After 1 Coin Toss (Heads)
+- **Conservative**: Belief barely changes
+- **Moderate**: Slight shift toward heads
+- **Agnostic**: Drastic change - now favors heads
+
+### After 10 Tosses (8 Heads, 2 Tails)
+- **Conservative**: Curve still centered near 0.5 (barely moved)
+- **Moderate**: Curve peaks around 0.65 (significant shift)
+- **Agnostic**: Curve peaks at 0.8 (fully data-driven)
+
+## Maximum A Posteriori (MAP) Estimation
+
+### Definition
+- **MAP** = Value that maximizes the posterior belief
+- **Posterior** = Updated belief after seeing data
+- **Method**: Take the **mode** of the posterior distribution
+
+### MAP Results for Each Bayesian
+| Statistician | MAP Estimate | Interpretation |
+|--------------|--------------|----------------|
+| **Conservative** | 0.501 | Almost unchanged from prior |
+| **Moderate** | 0.607 | Balanced update |
+| **Agnostic** | 0.8 | Matches frequentist approach |
+
+## Key Insights
+
+### Prior Strength Matters
+- **Strong prior**: Requires lots of evidence to change beliefs
+- **Weak prior**: Quickly adapts to new data
+- **Non-informative prior**: Becomes equivalent to frequentist MLE
+
+### MAP vs MLE
+- **MAP** = Mode of posterior = `argmax P(θ|data)`
+- **MLE** = Mode of likelihood = `argmax P(data|θ)`
+- **Relationship**: MAP = MLE when using uniform prior
+
+### Philosophical Implications
+- Priors encode domain knowledge and experience
+- Different starting beliefs lead to different conclusions
+- Non-informative priors bridge Bayesian and frequentist methods
+
+## Visual Learning
+The curves representing beliefs show:
+- Most likely parameter value (peak)
+- Strength of belief (curve width)
+- How beliefs evolve with new evidence
+
+## Next Steps
+Mathematical derivation of how to update beliefs using Bayes' Theorem   
+
+# Bayesian Statistics: Mathematical Foundation
+
+## Bayes' Theorem Framework
+
+### Core Equation  
+    P(A|B) = [P(B|A) × P(A)] / P(B)
+
+
+
+### Bayesian Interpretation
+| Term | Meaning | Example (Job Offer) |
+|------|---------|---------------------|
+| **P(A\|B)** | Posterior | Probability of job offer given phone interview |
+| **P(B\|A)** | Likelihood | Probability of interview given job offer |
+| **P(A)** | Prior | Initial belief about job offer chances |
+| **P(B)** | Evidence | Overall probability of getting interview |
+
+## Coin Example: Fair vs Biased
+
+### Setup
+- **Y** (parameter): Type of coin
+  - Y = 0.5 (fair coin)
+  - Y = 0.8 (biased coin)
+- **X** (evidence): Coin flip result
+  - X = 0 (tails)
+  - X = 1 (heads)
+
+### Priors
+- P(Y=0.5) = 0.75 (most coins are fair)
+- P(Y=0.8) = 0.25 (few coins are biased)
+
+### Evidence: Heads (X=1)
+
+#### Calculate P(Y=0.5 | X=1)
+    P(Y=0.5|X=1) = [P(X=1|Y=0.5) × P(Y=0.5)] / P(X=1)
+    = [0.5 × 0.75] / P(X=1)
+
+#### Calculate P(X=1) - Total Probability  
+    P(X=1) = P(X=1|Y=0.5)P(Y=0.5) + P(X=1|Y=0.8)P(Y=0.8)
+      = (0.5 × 0.75) + (0.8 × 0.25)
+      = 0.375 + 0.2 = 0.575
+
+#### Final Calculation  
+      P(Y=0.5|X=1) = (0.5 × 0.75) / 0.575 = 0.652
+      P(Y=0.8|X=1) = (0.8 × 0.25) / 0.575 = 0.348   
+
+
+### Results
+- **Prior**: 75% belief in fair coin
+- **Posterior**: 65.2% belief in fair coin (decreased)
+- **Updated**: 34.8% belief in biased coin (increased)
+
+## Generalized Bayes' Theorem
+
+### Discrete Random Variables
+    P(Y=y|X=x) = [P(X=x|Y=y) × P(Y=y)] / P(X=x)
+
+Where:
+- **P(Y=y|X=x)** = Posterior PMF
+- **P(X=x|Y=y)** = Likelihood PMF  
+- **P(Y=y)** = Prior PMF
+- **P(X=x)** = Evidence PMF
+
+### Continuous Random Variables
+Replace Probability Mass Functions (PMFs) with Probability Density Functions (PDFs):
+      f(Y=y|X=x) = [f(X=x|Y=y) × f(Y=y)] / f(X=x)
+
+
+### Mixed Cases
+| X Type | Y Type | Functions Used |
+|--------|--------|----------------|
+| Discrete | Discrete | PMF for both |
+| Continuous | Continuous | PDF for both |
+| Discrete | Continuous | PMF for X, PDF for Y |
+| Continuous | Discrete | PDF for X, PMF for Y |
+
+## Machine Learning Notation
+Often replace Y with θ (parameter):
+    P(θ|X) ∝ P(X|θ) × P(θ)
+
+
+Where:
+- **P(θ|X)** = Posterior distribution
+- **P(X|θ)** = Likelihood function
+- **P(θ)** = Prior distribution
+
+## Key Properties
+- **Normalization**: Posteriors sum to 1
+- **Bayesian Update**: Prior → Evidence → Posterior
+- **Iterative**: Posterior becomes prior for next update
+- **Flexible**: Works with discrete/continuous variables
+
+# Connecting MLE, MAP, and Regularization
+
+## The Model Selection Problem
+
+### Pure Maximum Likelihood Approach
+- **Goal**: Maximize `P(data | model)`
+- **Result**: Complex models win (overfit)
+- **Issue**: Ignores model simplicity
+
+### Bayesian Approach (MAP)
+- **Goal**: Maximize `P(model | data) ∝ P(data | model) × P(model)`
+- **Considers both**:
+  - How well model fits data (`P(data | model)`)
+  - How plausible model is (`P(model)`)
+
+## Model Probabilities
+
+### Simpler Models are More Probable
+- **Model 1** (linear): High probability
+- **Model 2** (quadratic): Medium probability  
+- **Model 3** (degree 10): Low probability
+
+### Mathematical Foundation
+**Assume coefficients sampled from standard normal**:
+        P(coefficient aᵢ) = (1/√(2π)) × e^(-½aᵢ²)
+
+
+**Model probability** = Product of coefficient probabilities
+
+## From Probabilities to Loss Functions
+
+### Bayesian Objective
+      Maximize: `P(data | model) × P(model)`
+
+### Take Logarithms
+      log[P(data|model) × P(model)] = log P(data|model) + log P(model)
+
+
+### Convert to Loss Minimization
+- **Data term**: `-log P(data|model)` → Sum of squared distances
+- **Model term**: `-log P(model)` → Sum of squared coefficients
+- **Total**: `∑dᵢ² + ∑aᵢ²` (L₂ regularization)
+
+## Complete Picture
+
+| Concept | Probability Form | Loss Form |
+|---------|------------------|-----------|
+| **Data Fit** | `P(data|model)` | `∑dᵢ²` (squared error) |
+| **Model Simplicity** | `P(model)` | `∑aᵢ²` (L₂ penalty) |
+| **Combined** | `P(data|model) × P(model)` | `∑dᵢ² + λ∑aᵢ²` |
+
+## Key Insights
+
+### Regularization = Bayesian Priors
+- **L₂ regularization** ↔ **Gaussian priors on coefficients**
+- **Regularization parameter λ** controls prior strength
+- **Stronger regularization** = Stronger belief in simple models
+
+### MAP Estimation Bridges Worlds
+- **Frequentist MLE**: Only cares about data fit
+- **Bayesian MAP**: Balances data fit with model plausibility  
+- **Practical result**: Prevents overfitting
+
+## Practical Application
+
+### Linear Regression with Regularization
+      Minimize: ∑(yᵢ - ŷᵢ)² + λ∑aⱼ²
+
+Where:
+- First term: Data fitting (MLE component)
+- Second term: Model simplicity (prior component)
+- λ: Trades off between fitting and simplicity
+
+
+
+
 
 
 
